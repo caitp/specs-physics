@@ -26,14 +26,14 @@ pub trait Pose<N: RealField>: Component + Send + Sync {
 
 // TODO: 64 bit implementation for amethyst
 #[cfg(all(feature = "amethyst", feature = "dim3"))]
-impl Pose<f32> for amethyst::core::Transform {
+impl Pose<f32> for amethyst_core::Transform {
     fn sync(&mut self, pose: &Isometry<f32>) {
         *self.isometry_mut() = *pose;
     }
 }
 
 #[cfg(all(feature = "amethyst", feature = "dim2"))]
-impl Pose<f32> for amethyst::core::Transform {
+impl Pose<f32> for amethyst_core::Transform {
     fn sync(&mut self, pose: &Isometry<N>) {
         let euler = self.rotation().euler_angles();
         self.set_rotation_euler(euler.0, euler.1, pose.rotation.angle());

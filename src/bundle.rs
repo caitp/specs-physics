@@ -135,14 +135,12 @@ impl<N: RealField, P: Pose<N>> PhysicsBundle<N, P> {
 }
 
 #[cfg(feature = "amethyst")]
-impl<'a, 'b, N: RealField, P: Pose<N>> amethyst::core::SystemBundle<'a, 'b>
-    for PhysicsBundle<N, P>
-{
+impl<'a, 'b, N: RealField, P: Pose<N>> amethyst_core::SystemBundle<'a, 'b> for PhysicsBundle<N, P> {
     fn build(
         self,
         world: &mut World,
         builder: &mut DispatcherBuilder,
-    ) -> Result<(), amethyst::error::Error> {
+    ) -> Result<(), amethyst_error::Error> {
         Ok(self.register(world, builder))
     }
 }
